@@ -177,5 +177,6 @@ export function useProviderRows(): ComputedRef<ProviderRowDef[]> {
         blockedMessage: t('settings.metadata.providers.blocked.aladin'),
       },
     },
+    { key: 'libris', label: 'Libris', group: 'regional', hint: t('settings.metadata.providers.hints.libris'), fields: [] },
   ])
 }

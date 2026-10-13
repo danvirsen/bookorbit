@@ -13,6 +13,7 @@ import { GoogleProvider } from './google/google.provider';
 import { HardcoverClient } from './hardcover/hardcover.client';
 import { HardcoverProvider } from './hardcover/hardcover.provider';
 import { ITunesProvider } from './itunes/itunes.provider';
+import { LibrisProvider } from './libris/libris.provider';
 import { IdentifiableProvider, MetadataProvider } from './metadata-provider';
 import { MetadataSearchParams } from './metadata-search-params';
 import { OpenLibraryProvider } from './open-library/open-library.provider';
@@ -45,6 +46,7 @@ const CONFIG: ProviderConfigurations = {
   kobo: { enabled: false, country: 'us', language: 'en' },
   lubimyczytac: { enabled: false },
   aladin: { enabled: true, ttbKey: 'aladin-key' },
+  libris: { enabled: true },
 };
 
 const providerConfig = { getConfig: () => Promise.resolve(CONFIG) } as unknown as ProviderConfigService;
@@ -208,6 +210,15 @@ const SUITES: TrustSuite[] = [
     partialFailure: () => json({ totalResults: 1, item: [null] }),
     genuineEmpty: () => json({ version: '20131101', totalResults: 0, startIndex: 1, itemsPerPage: 10, item: [] }),
   },
+  {
+    name: 'libris',
+    build: () => new LibrisProvider(providerConfig),
+    params: TITLE_AUTHOR,
+    apiErrorBody: () => json({ message: 'Internal error' }),
+    partialFailure: (url) =>
+      url.pathname === '/find.jsonld' ? json({ totalItems: 1, items: [{ '@id': 'https://libris.kb.se/ctv82fx49rndh4z7#it' }] }) : status(500),
+    genuineEmpty: () => json({ totalItems: 0, items: [] }),
+  },
 ];
 
 describe('trusting empty answers', () => {
@@ -269,6 +280,7 @@ describe('authoritative lookup statuses', () => {
     { name: 'open-library', build: () => new OpenLibraryProvider(providerConfig), id: 'OL0W' },
     { name: 'comicvine', build: () => new ComicVineProvider(new ComicVineClient(), providerConfig, new ProviderThrottleTracker()), id: '999' },
     { name: 'ranobedb', build: () => new RanobeDbProvider(new RanobeDbClient(), providerConfig), id: '999' },
+    { name: 'libris', build: () => new LibrisProvider(providerConfig), id: 'ctv82fx49rndh4z7' },
   ];
 
   it.each(NOT_FOUND_LOOKUPS)('$name keeps a 404 lookup as a not-found answer', async ({ build, id }) => {
@@ -327,6 +339,7 @@ describe('authoritative lookup statuses', () => {
     { name: 'itunes', build: () => new ITunesProvider(providerConfig) as IdentifiableProvider },
     { name: 'audible', build: () => new AudibleProvider(providerConfig) as IdentifiableProvider },
     { name: 'aladin', build: () => new AladinProvider(providerConfig) as IdentifiableProvider },
+    { name: 'libris', build: () => new LibrisProvider(providerConfig) as IdentifiableProvider },
     { name: 'hardcover', build: () => new HardcoverProvider(new HardcoverClient(), providerConfig) as IdentifiableProvider },
     { name: 'ranobedb', build: () => new RanobeDbProvider(new RanobeDbClient(), providerConfig) as IdentifiableProvider },
   ])('$name does not pass a malformed lookup body off as an answer', async ({ build }) => {

@@ -752,6 +752,7 @@ describe('MetadataFetchService', () => {
       ranobedbId: null,
       lubimyczytacId: 'lc-1',
       aladinId: null,
+      librisId: null,
     });
     metadataFetchRepository.hasLibraryAccess.mockResolvedValue(true);
 
@@ -771,6 +772,7 @@ describe('MetadataFetchService', () => {
       [MetadataProviderKey.RANOBEDB]: undefined,
       [MetadataProviderKey.LUBIMYCZYTAC]: 'lc-1',
       [MetadataProviderKey.ALADIN]: undefined,
+      [MetadataProviderKey.LIBRIS]: undefined,
     });
     expect(metadataFetchRepository.hasLibraryAccess).toHaveBeenCalledWith(5, 7);
   });
@@ -791,6 +793,7 @@ describe('MetadataFetchService', () => {
       ranobedbId: null,
       lubimyczytacId: null,
       aladinId: null,
+      librisId: null,
     });
 
     await expect(service.getStoredProviderIds(99, makeUser({ isSuperuser: true }))).resolves.toEqual({
@@ -807,6 +810,7 @@ describe('MetadataFetchService', () => {
       [MetadataProviderKey.RANOBEDB]: undefined,
       [MetadataProviderKey.LUBIMYCZYTAC]: undefined,
       [MetadataProviderKey.ALADIN]: undefined,
+      [MetadataProviderKey.LIBRIS]: undefined,
     });
     expect(metadataFetchRepository.hasLibraryAccess).not.toHaveBeenCalled();
   });
@@ -833,6 +837,7 @@ describe('MetadataFetchService', () => {
       ranobedbId: null,
       lubimyczytacId: null,
       aladinId: null,
+      librisId: null,
     });
     metadataFetchRepository.hasLibraryAccess.mockResolvedValue(false);
 

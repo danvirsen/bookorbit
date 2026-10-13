@@ -20,6 +20,7 @@ describe('AladinProvider', () => {
     comicvine: { enabled: false, apiKey: '' },
     ranobedb: { enabled: false },
     aladin: { enabled: true, ttbKey: 'test-ttb-key' },
+    libris: { enabled: false },
   };
 
   const mockAladinItem = {

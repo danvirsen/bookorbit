@@ -38,6 +38,7 @@ describe('getProviderColor', () => {
       'ranobedb',
       'kobo',
       'aladin',
+      'libris',
       'auto',
     ]
     for (const provider of providers) {
@@ -66,6 +67,7 @@ describe('PROVIDER_SHORT_LABELS', () => {
       'ranobedb',
       'kobo',
       'aladin',
+      'libris',
     ]
     for (const provider of providers) {
       expect(PROVIDER_SHORT_LABELS[provider]).toBeTruthy()

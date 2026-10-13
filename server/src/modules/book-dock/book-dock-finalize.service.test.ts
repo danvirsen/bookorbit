@@ -1688,6 +1688,7 @@ describe('BookDockFinalizeService', () => {
           ranobedbId: 'ranobedb-id',
           lubimyczytacId: 'lubimyczytac-id',
           aladinId: 'aladin-id',
+          librisId: 'libris-id',
           comicMetadata: { issueNumber: '1', pencillers: ['Artist'] },
         } as BookDockMetadata,
       }),
@@ -1712,6 +1713,7 @@ describe('BookDockFinalizeService', () => {
         ranobedbId: 'ranobedb-id',
         lubimyczytacId: 'lubimyczytac-id',
         aladinId: 'aladin-id',
+        librisId: 'libris-id',
       }),
     );
     expect(seriesMemberships.replaceForBook).toHaveBeenCalledWith(19, [

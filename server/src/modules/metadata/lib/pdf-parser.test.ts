@@ -85,6 +85,7 @@ function makeParsed(overrides: Partial<PdfParsed> = {}): PdfParsed {
     koboId: null,
     lubimyczytacId: null,
     aladinId: null,
+    librisId: null,
     itunesId: null,
     coverBuffer: null,
     ...overrides,

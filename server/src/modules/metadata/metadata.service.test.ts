@@ -820,6 +820,7 @@ describe('MetadataService', () => {
       comicvineId: '140529',
       lubimyczytacId: null,
       aladinId: null,
+      librisId: null,
       itunesId: null,
       comicMetadata: null,
     });
@@ -864,6 +865,7 @@ describe('MetadataService', () => {
         comicvineId: null,
         lubimyczytacId: null,
         aladinId: null,
+        librisId: null,
         itunesId: null,
         comicMetadata: null,
         ...overrides,

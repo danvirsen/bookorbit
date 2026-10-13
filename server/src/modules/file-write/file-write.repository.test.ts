@@ -160,6 +160,7 @@ describe('FileWriteRepository', () => {
       comicvineId: 'cv',
       lubimyczytacId: 'lc',
       aladinId: 'al',
+      librisId: 'li',
       itunesId: 'it',
       audibleId: 'aud',
       librofmId: '9781234567890',

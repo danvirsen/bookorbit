@@ -227,6 +227,12 @@ describe('Book DTO validation', () => {
     expect((await errorsFor(UpdateBookMetadataDto, { aladinId: 'a'.repeat(21) })).length).toBeGreaterThan(0);
   });
 
+  it('accepts librisId and enforces its length bound', async () => {
+    expect((await errorsFor(UpdateBookMetadataDto, { librisId: 'ctv82fx49rndh4z7' })).length).toBe(0);
+    expect((await errorsFor(UpdateBookMetadataDto, { librisId: null })).length).toBe(0);
+    expect((await errorsFor(UpdateBookMetadataDto, { librisId: 'a'.repeat(21) })).length).toBeGreaterThan(0);
+  });
+
   it('accepts librofmId and enforces its length bound', async () => {
     expect((await errorsFor(UpdateBookMetadataDto, { librofmId: '9781234567890' })).length).toBe(0);
     expect((await errorsFor(UpdateBookMetadataDto, { librofmId: null })).length).toBe(0);

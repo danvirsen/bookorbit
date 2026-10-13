@@ -36,6 +36,7 @@ export type ProviderIdPatchField =
   | 'ranobedbId'
   | 'lubimyczytacId'
   | 'aladinId'
+  | 'librisId'
 
 export type DiffFieldKey =
   | 'title'
@@ -133,6 +134,7 @@ export const PROVIDER_ID_FIELD: Record<MetadataProviderKey, ProviderIdPatchField
   kobo: 'koboId',
   lubimyczytac: 'lubimyczytacId',
   aladin: 'aladinId',
+  libris: 'librisId',
 }
 
 const PROVIDER_ID_PATCH_FIELDS = new Set<string>(Object.values(PROVIDER_ID_FIELD).filter((v): v is ProviderIdPatchField => v !== undefined))

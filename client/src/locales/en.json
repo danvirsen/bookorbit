@@ -1790,7 +1790,8 @@
           "comicvine": "Comic book metadata from ComicVine. A free API key is required from comicvine.gamespot.com.",
           "ranobedb": "Japanese light novel metadata from RanobeDB. No setup required.",
           "lubimyczytac": "Polish book catalog (lubimyczytac.pl). Scrapes public book pages. No setup required.",
-          "aladin": "Korean book metadata from Aladin (알라딘). A TTB Key from aladin.co.kr is required."
+          "aladin": "Korean book metadata from Aladin (알라딘). A TTB Key from aladin.co.kr is required.",
+          "libris": "Swedish national library catalog (libris.kb.se). Free public API, no setup required."
         },
         "blocked": {
           "google": "Google Books requires an API key before it can be enabled",
@@ -5917,7 +5918,8 @@
             "ranobedb": "RanobeDB ID",
             "kobo": "Kobo ID",
             "lubimyczytac": "LubimyCzytac ID",
-            "aladin": "Aladin ID"
+            "aladin": "Aladin ID",
+            "libris": "Libris ID"
           }
         },
         "searchDrawer": {

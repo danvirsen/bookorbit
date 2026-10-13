@@ -22,6 +22,7 @@ import { ITunesProvider } from './itunes/itunes.provider';
 import { fetchKoboHtmlWithCloudscraper } from './kobo/kobo-cloudscraper.fetcher';
 import { KoboProvider } from './kobo/kobo.provider';
 import { LibroFmProvider } from './librofm/librofm.provider';
+import { LibrisProvider } from './libris/libris.provider';
 import { LubimyczytacProvider } from './lubimyczytac/lubimyczytac.provider';
 import { isIdentifiable, MetadataProvider } from './metadata-provider';
 import { MetadataSearchParams } from './metadata-search-params';
@@ -51,6 +52,7 @@ const CONFIG: ProviderConfigurations = {
   kobo: { enabled: true, country: 'ca', language: 'fr' },
   lubimyczytac: { enabled: true },
   aladin: { enabled: true, ttbKey: 'aladin-secret' },
+  libris: { enabled: true },
 };
 
 const SECRETS = ['google-secret', 'amazon-secret', 'hardcover-secret', 'comicvine-secret', 'aladin-secret'];
@@ -84,6 +86,8 @@ function buildProvider(key: MetadataProviderKey, config: ProviderConfigurations 
       return new OpenLibraryProvider(providerConfig);
     case MetadataProviderKey.ALADIN:
       return new AladinProvider(providerConfig);
+    case MetadataProviderKey.LIBRIS:
+      return new LibrisProvider(providerConfig);
     case MetadataProviderKey.RANOBEDB:
       return new RanobeDbProvider(new RanobeDbClient(), providerConfig);
     default:
@@ -282,6 +286,15 @@ const CASES: DeclarationCase[] = [
     fingerprint: {},
   },
   {
+    key: MetadataProviderKey.LIBRIS,
+    withIsbn: { ...TITLE_AUTHOR, ...ISBN_ONLY },
+    withoutIsbn: TITLE_AUTHOR,
+    searchReads: ['maxCandidatesPerProvider'],
+    honoursMax: true,
+    lookup: LOOKUP_ID,
+    fingerprint: {},
+  },
+  {
     key: MetadataProviderKey.RANOBEDB,
     withIsbn: TITLE_AUTHOR,
     withoutIsbn: TITLE_AUTHOR,
@@ -319,6 +332,7 @@ describe('provider cache declarations', () => {
         MetadataProviderKey.COMICVINE,
         MetadataProviderKey.OPEN_LIBRARY,
         MetadataProviderKey.ALADIN,
+        MetadataProviderKey.LIBRIS,
         MetadataProviderKey.RANOBEDB,
       ].sort(),
     );

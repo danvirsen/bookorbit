@@ -1779,7 +1779,8 @@
         "openLibraryId": "Open Library-azonosító",
         "itunesId": "iTunes-azonosító",
         "koboId": "Kobo-azonosító",
-        "aladinId": "Aladin-azonosító"
+        "aladinId": "Aladin-azonosító",
+        "librisId": "Libris-azonosító"
       },
       "mergeStrategy": {
         "fillMissing": {

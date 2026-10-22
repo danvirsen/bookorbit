@@ -125,6 +125,7 @@ export class BookDockMetadataFieldsDto {
   @NormalizeIdentifier() @IsOptional() @IsString() @MaxLength(50) ranobedbId?: string | null;
   @NormalizeIdentifier() @IsOptional() @IsString() @MaxLength(512) lubimyczytacId?: string | null;
   @NormalizeIdentifier() @IsOptional() @IsString() @MaxLength(20) aladinId?: string | null;
+  @NormalizeIdentifier() @IsOptional() @IsString() @MaxLength(20) librisId?: string | null;
   @IsOptional() @ValidateNested() @Type(() => BookDockComicMetadataDto) comicMetadata?: BookDockComicMetadataDto | null;
 }
 

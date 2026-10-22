@@ -82,6 +82,7 @@ export class UpdateBookMetadataDto {
   @NormalizeIdentifier() @IsOptional() @IsString() @MaxLength(PROVIDER_ID_MAX_LENGTHS.ranobedbId) ranobedbId?: string | null;
   @NormalizeIdentifier() @IsOptional() @IsString() @MaxLength(PROVIDER_ID_MAX_LENGTHS.lubimyczytacId) lubimyczytacId?: string | null;
   @NormalizeIdentifier() @IsOptional() @IsString() @MaxLength(PROVIDER_ID_MAX_LENGTHS.aladinId) aladinId?: string | null;
+  @NormalizeIdentifier() @IsOptional() @IsString() @MaxLength(PROVIDER_ID_MAX_LENGTHS.librisId) librisId?: string | null;
   @IsOptional() @ValidateNested() @Type(() => ComicMetadataDto) comicMetadata?: ComicMetadataDto;
   @IsOptional() @IsArray() @ValidateNested({ each: true }) @Type(() => CustomMetadataValueDto) customMetadata?: CustomMetadataValueDto[];
 }

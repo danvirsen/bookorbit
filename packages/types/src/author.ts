@@ -65,6 +65,7 @@ export type MergeAuthorsResult = {
 export const AuthorMetadataProviderKey = {
   AUDNEXUS: "audnexus",
   GOODREADS: "goodreads",
+  LIBRIS: "libris",
 } as const;
 
 export type AuthorMetadataProviderKey = (typeof AuthorMetadataProviderKey)[keyof typeof AuthorMetadataProviderKey];
@@ -163,9 +164,12 @@ export const ALL_AUTHOR_METADATA_FIELDS: AuthorMetadataField[] = [
 
 // What each provider can actually return. Audnexus exposes only asin, name,
 // description and image, so listing it against any other field would be inert.
+// Libris person records carry a short cataloguer's note and a life span in
+// years, and a photo through the Wikidata item they link to.
 export const AUTHOR_PROVIDER_SUPPORTED_FIELDS: Record<AuthorMetadataProviderKey, AuthorMetadataField[]> = {
   [AuthorMetadataProviderKey.AUDNEXUS]: ["description", "photo"],
   [AuthorMetadataProviderKey.GOODREADS]: [...ALL_AUTHOR_METADATA_FIELDS],
+  [AuthorMetadataProviderKey.LIBRIS]: ["description", "photo", "birthDate", "deathDate"],
 };
 
 export function providerSupportsAuthorField(provider: AuthorMetadataProviderKey, field: AuthorMetadataField): boolean {

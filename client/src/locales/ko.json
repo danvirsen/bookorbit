@@ -1587,7 +1587,8 @@
         "openLibraryId": "Open Library ID",
         "itunesId": "iTunes ID",
         "koboId": "Kobo ID",
-        "aladinId": "알라딘 ID"
+        "aladinId": "알라딘 ID",
+        "librisId": "Libris ID"
       },
       "mergeStrategy": {
         "fillMissing": {

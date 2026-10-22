@@ -19,6 +19,7 @@ function legacyConfigWithoutLibroFm(): ProviderConfigurations {
     kobo: { enabled: false, country: 'us', language: 'en' },
     lubimyczytac: { enabled: false },
     aladin: { enabled: false, ttbKey: '' },
+    libris: { enabled: false },
   } as ProviderConfigurations
 }
 
@@ -33,7 +34,7 @@ describe('ProviderConfigPanel', () => {
     })
 
     expect(wrapper.text()).not.toContain('Libro.fm')
-    expect(wrapper.findAll('[role="switch"]')).toHaveLength(13)
+    expect(wrapper.findAll('[role="switch"]')).toHaveLength(14)
     await wrapper.find('form').trigger('submit')
     expect(wrapper.emitted('save')?.[0]?.[0]).not.toHaveProperty('librofm')
     wrapper.unmount()
@@ -49,7 +50,7 @@ describe('ProviderConfigPanel', () => {
     })
 
     expect(wrapper.text()).toContain('Libro.fm')
-    expect(wrapper.findAll('[role="switch"]')).toHaveLength(14)
+    expect(wrapper.findAll('[role="switch"]')).toHaveLength(15)
     wrapper.unmount()
   })
 })

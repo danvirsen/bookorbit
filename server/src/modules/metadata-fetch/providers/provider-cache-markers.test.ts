@@ -18,6 +18,7 @@ import { HardcoverProvider } from './hardcover/hardcover.provider';
 import { ITunesProvider } from './itunes/itunes.provider';
 import { fetchKoboHtmlWithCloudscraper } from './kobo/kobo-cloudscraper.fetcher';
 import { KoboProvider } from './kobo/kobo.provider';
+import { LibrisProvider } from './libris/libris.provider';
 import { LibroFmProvider } from './librofm/librofm.provider';
 import { LubimyczytacProvider } from './lubimyczytac/lubimyczytac.provider';
 
@@ -49,6 +50,7 @@ const CONFIG: ProviderConfigurations = {
   kobo: { enabled: true, country: 'us', language: 'en' },
   lubimyczytac: { enabled: true },
   aladin: { enabled: true, ttbKey: 'aladin-key' },
+  libris: { enabled: true },
 };
 
 const providerConfig = { getConfig: () => Promise.resolve(CONFIG) } as unknown as ProviderConfigService;
@@ -206,6 +208,22 @@ describe('lubimyczytac markers', () => {
   });
 });
 
+describe('libris markers', () => {
+  it('marks a record that does not parse as degraded', async () => {
+    routeEgress((url) =>
+      url.pathname === '/find.jsonld'
+        ? json({ totalItems: 1, items: [{ '@id': 'https://libris.kb.se/ctv82fx49rndh4z7#it' }] })
+        : json({ '@graph': [] }),
+    );
+
+    const { record, value } = await runRecorded(() => new LibrisProvider(providerConfig).search({ title: 'Dune' }));
+
+    expect(value).toEqual([]);
+    expect(record.unsuccessfulRequests()).toEqual([]);
+    expect(record.degradationReasons).toContain('libris.lookup: record did not parse');
+  });
+});
+
 describe('librofm markers', () => {
   it('marks an audiobook whose details come back empty as degraded', async () => {
     routeEgress((url) =>
@@ -274,6 +292,25 @@ describe('api provider markers', () => {
 
     expect(value).toEqual([]);
     expect(record.failureReasons).toEqual([]);
+  });
+
+  it('marks a Libris body with neither items nor a result count as failed', async () => {
+    routeEgress(() => json({}));
+
+    const { record, value } = await runRecorded(() => new LibrisProvider(providerConfig).search({ title: 'Dune' }));
+
+    expect(value).toEqual([]);
+    expect(record.failureReasons).toContain('libris.search: response without results');
+  });
+
+  it('accepts a Libris answer of no results without marking it', async () => {
+    routeEgress(() => json({ totalItems: 0, items: [] }));
+
+    const { record, value } = await runRecorded(() => new LibrisProvider(providerConfig).search({ title: 'Dune' }));
+
+    expect(value).toEqual([]);
+    expect(record.failureReasons).toEqual([]);
+    expect(record.degradationReasons).toEqual([]);
   });
 
   it('marks a Google total without items as degraded', async () => {

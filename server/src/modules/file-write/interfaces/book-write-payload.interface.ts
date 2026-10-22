@@ -28,6 +28,7 @@ export interface BookWritePayload {
   koboId?: string | null;
   lubimyczytacId?: string | null;
   aladinId?: string | null;
+  librisId?: string | null;
   comicvineId?: string | null;
   comicIssueNumber?: string | null;
   comicVolumeName?: string | null;

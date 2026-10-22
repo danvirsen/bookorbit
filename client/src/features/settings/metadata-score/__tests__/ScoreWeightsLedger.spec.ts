@@ -33,19 +33,19 @@ describe('ScoreWeightsLedger', () => {
 
   it('separates switched-off fields into their own section instead of showing a bare zero', () => {
     const wrapper = render()
-    expect(wrapper.text()).toContain('Not scored (3)')
+    expect(wrapper.text()).toContain('Not scored (4)')
     expect(wrapper.text()).toContain('A field at zero leaves the total too')
   })
 
   it('moves a field into the not-scored section when it is zeroed', () => {
     const wrapper = render({ weights: { ...defaults(), description: 0 } })
-    expect(wrapper.text()).toContain('Not scored (4)')
+    expect(wrapper.text()).toContain('Not scored (5)')
   })
 
   it('renders a spinbutton per field, labelled by the visible field name', () => {
     const wrapper = render()
     const inputs = wrapper.findAll('input[type="number"]')
-    expect(inputs).toHaveLength(24)
+    expect(inputs).toHaveLength(25)
     expect(inputs[0].attributes('aria-labelledby')).toBe('score-field-title')
     expect(wrapper.find('#score-field-title').text()).toBe('Title')
   })

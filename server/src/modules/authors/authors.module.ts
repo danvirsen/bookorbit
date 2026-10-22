@@ -25,6 +25,7 @@ import { AUTHOR_METADATA_PROVIDERS } from './metadata/constants';
 import { AuthorMetadataProviderRegistry } from './metadata/provider-registry';
 import { AudnexusAuthorMetadataProvider } from './metadata/providers/audnexus/audnexus.provider';
 import { GoodreadsAuthorMetadataProvider } from './metadata/providers/goodreads/goodreads.provider';
+import { LibrisAuthorMetadataProvider } from './metadata/providers/libris/libris.provider';
 import { AuthorMetadataProvider } from './metadata/providers/author-metadata-provider';
 import { AuthorEnrichmentSessionService } from './author-enrichment-session.service';
 import { AuthorsRepository } from './authors.repository';
@@ -33,7 +34,7 @@ import { AuthorMetadataPreferencesService } from './author-metadata-preferences.
 import { AuthorMetadataPreferenceResolver } from './metadata/author-metadata-preference-resolver';
 import { MetadataPreferencesModule } from '../metadata-preferences/metadata-preferences.module';
 
-const AUTHOR_PROVIDER_CLASSES = [AudnexusAuthorMetadataProvider, GoodreadsAuthorMetadataProvider];
+const AUTHOR_PROVIDER_CLASSES = [AudnexusAuthorMetadataProvider, GoodreadsAuthorMetadataProvider, LibrisAuthorMetadataProvider];
 
 @Module({
   imports: [

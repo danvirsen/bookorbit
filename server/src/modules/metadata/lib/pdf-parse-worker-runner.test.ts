@@ -43,6 +43,7 @@ describe('parsePdfFileInWorker', () => {
       koboId: null,
       lubimyczytacId: null,
       aladinId: null,
+      librisId: null,
       itunesId: null,
       coverBuffer: null,
       ...overrides,

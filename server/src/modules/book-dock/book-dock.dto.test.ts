@@ -76,6 +76,7 @@ describe('BookDock DTO validation', () => {
       ranobedbId: 'ranobedb-id',
       lubimyczytacId: 'lubimyczytac-id',
       aladinId: 'aladin-id',
+      librisId: 'libris-id',
       comicMetadata: { issueNumber: '1', pencillers: ['Artist'] },
     };
 

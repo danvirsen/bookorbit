@@ -15,6 +15,7 @@ export const PROVIDER_ID_FIELDS = [
   { provider: MetadataProviderKey.RANOBEDB, field: 'ranobedbId', label: 'RanobeDB' },
   { provider: MetadataProviderKey.LUBIMYCZYTAC, field: 'lubimyczytacId', label: 'LubimyCzytac' },
   { provider: MetadataProviderKey.ALADIN, field: 'aladinId', label: 'Aladin' },
+  { provider: MetadataProviderKey.LIBRIS, field: 'librisId', label: 'Libris' },
 ] as const
 
 export type ProviderIdField = (typeof PROVIDER_ID_FIELDS)[number]

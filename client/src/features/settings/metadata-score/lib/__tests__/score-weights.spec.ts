@@ -84,7 +84,7 @@ describe('rankedScoreFields', () => {
   it('sorts by weight and sinks switched-off fields to the bottom', () => {
     const ranked = rankedScoreFields(defaults())
     expect(ranked.slice(0, 3)).toEqual(['title', 'authors', 'coverSource'])
-    expect(ranked.slice(-3)).toEqual(['subtitle', 'seriesName', 'seriesIndex'])
+    expect(ranked.slice(-4)).toEqual(['subtitle', 'seriesName', 'seriesIndex', 'librisId'])
   })
 
   it('keeps every field exactly once', () => {

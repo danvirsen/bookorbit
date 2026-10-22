@@ -103,6 +103,7 @@ const DIRECT_PATCH_FIELDS = [
   'ranobedbId',
   'lubimyczytacId',
   'aladinId',
+  'librisId',
 ] as const
 
 const COMIC_FIELD_MAP = {
@@ -716,6 +717,7 @@ function buildPreviewPatch(preview: MetadataRefreshPreview): MetadataPatch {
     ranobedbId: preview.ranobedbId,
     lubimyczytacId: preview.lubimyczytacId,
     aladinId: preview.aladinId,
+    librisId: preview.librisId,
     comicMetadata: preview.comicMetadata,
     narrators: preview.audioMetadata?.narrators,
     durationSeconds: preview.audioMetadata?.durationSeconds ?? undefined,

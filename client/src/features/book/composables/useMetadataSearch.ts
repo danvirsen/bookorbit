@@ -199,6 +199,7 @@ export function useMetadataSearch() {
     'kobo',
     'openLibrary',
     'aladin',
+    'libris',
   ]
 
   function sortResults(list: MetadataCandidate[]): MetadataCandidate[] {

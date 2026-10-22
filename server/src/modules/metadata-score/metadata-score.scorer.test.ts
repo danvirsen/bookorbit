@@ -25,6 +25,7 @@ function makeData(overrides: Partial<ScoreData> = {}): ScoreData {
     itunesId: null,
     koboId: null,
     aladinId: null,
+    librisId: null,
     authorCount: 0,
     genreCount: 0,
     tagCount: 0,
@@ -83,6 +84,7 @@ describe('MetadataScoreScorer', () => {
       itunesId: 0,
       koboId: 0,
       aladinId: 0,
+      librisId: 0,
     };
 
     expect(scorer.compute(data, weights)).toBe(100);
@@ -116,8 +118,25 @@ describe('MetadataScoreScorer', () => {
       itunesId: 0,
       koboId: 0,
       aladinId: 0,
+      librisId: 0,
     };
 
     expect(scorer.compute(makeData({ title: 'Dune', coverSource: 'extracted', authorCount: 10 }), weights)).toBe(100);
+  });
+
+  it('leaves the Libris ID out of the score by default', () => {
+    expect(DEFAULT_METADATA_SCORE_WEIGHTS.librisId).toBe(0);
+
+    const titleOnly = makeData({ title: 'Bröderna Lejonhjärta' });
+    const withLibris = makeData({ title: 'Bröderna Lejonhjärta', librisId: 'fcrtpljz1qp2bdv' });
+    expect(scorer.compute(withLibris, DEFAULT_METADATA_SCORE_WEIGHTS)).toBe(scorer.compute(titleOnly, DEFAULT_METADATA_SCORE_WEIGHTS));
+  });
+
+  it('scores the Libris ID once it is given a weight', () => {
+    const weights = Object.fromEntries(Object.keys(DEFAULT_METADATA_SCORE_WEIGHTS).map((key) => [key, 0])) as MetadataScoreWeights;
+    weights.librisId = 1;
+
+    expect(scorer.compute(makeData({ librisId: 'fcrtpljz1qp2bdv' }), weights)).toBe(100);
+    expect(scorer.compute(makeData(), weights)).toBe(0);
   });
 });

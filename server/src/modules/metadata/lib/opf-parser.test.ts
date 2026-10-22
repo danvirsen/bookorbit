@@ -703,6 +703,7 @@ describe('parseOpf', () => {
         <dc:identifier opf:scheme="KOBO">urn:kobo:kobo-123</dc:identifier>
         <dc:identifier opf:scheme="LUBIMYCZYTAC">urn:lubimyczytac:lub-99999</dc:identifier>
         <dc:identifier opf:scheme="ALADIN">urn:aladin:9791190090018</dc:identifier>
+        <dc:identifier opf:scheme="LIBRIS">urn:libris:ctv82fx49rndh4z7</dc:identifier>
         <dc:identifier opf:scheme="ITUNES">urn:itunes:123456789</dc:identifier>
       `);
       const r = parseOpf(xml);
@@ -715,6 +716,7 @@ describe('parseOpf', () => {
       expect(r.koboId).toBe('kobo-123');
       expect(r.lubimyczytacId).toBe('lub-99999');
       expect(r.aladinId).toBe('9791190090018');
+      expect(r.librisId).toBe('ctv82fx49rndh4z7');
       expect(r.itunesId).toBe('123456789');
     });
 

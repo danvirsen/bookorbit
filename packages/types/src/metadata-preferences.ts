@@ -148,6 +148,7 @@ export interface ProviderConfigurations {
   kobo: KoboProviderConfig;
   lubimyczytac: SimpleProviderConfig;
   aladin: AladinProviderConfig;
+  libris: SimpleProviderConfig;
 }
 
 export interface ProviderStatus {
@@ -372,6 +373,20 @@ export const METADATA_PROVIDER_SUPPORTED_FIELDS: Record<MetadataProviderKey, rea
     "language",
     "pageCount",
     "seriesName",
+    "genres",
+  ],
+  [MetadataProviderKey.LIBRIS]: [
+    "title",
+    "description",
+    "cover",
+    "authors",
+    "publisher",
+    "isbn",
+    "publishedYear",
+    "language",
+    "pageCount",
+    "seriesName",
+    "seriesIndex",
     "genres",
   ],
 };

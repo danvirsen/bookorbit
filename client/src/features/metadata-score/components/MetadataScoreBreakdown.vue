@@ -78,6 +78,8 @@ function isFieldFilled(field: MetadataScoreField): boolean {
       return !!b.providerIds.kobo?.trim()
     case 'aladinId':
       return !!b.providerIds.aladin?.trim()
+    case 'librisId':
+      return !!b.providerIds.libris?.trim()
     default:
       return false
   }

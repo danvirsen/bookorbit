@@ -28,6 +28,7 @@ function makeConfig(overrides: Partial<ProviderConfigurations> = {}): ProviderCo
     kobo: { enabled: false, country: 'us', language: 'en' },
     lubimyczytac: { enabled: false },
     aladin: { enabled: true, ttbKey: 'aladin-ttb-key' },
+    libris: { enabled: false },
     ...overrides,
   }
 }

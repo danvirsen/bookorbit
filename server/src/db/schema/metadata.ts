@@ -74,6 +74,7 @@ export const bookMetadata = pgTable(
     ranobedbId: varchar('ranobedb_id', { length: 50 }),
     lubimyczytacId: text('lubimyczytac_id'),
     aladinId: varchar('aladin_id', { length: 20 }),
+    librisId: varchar('libris_id', { length: 20 }),
     chapters: jsonb('chapters'),
     lockedFields: text('locked_fields')
       .array()

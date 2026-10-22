@@ -8,6 +8,7 @@ export type AuthorProviderReference = {
 const PROVIDER_LABELS: Record<AuthorMetadataProviderKey, string> = {
   [AuthorMetadataProviderKey.GOODREADS]: 'Goodreads',
   [AuthorMetadataProviderKey.AUDNEXUS]: 'Audnexus',
+  [AuthorMetadataProviderKey.LIBRIS]: 'Libris',
 }
 
 const GOODREADS_AUTHOR_URL = /goodreads\.com\/(?:[a-z]{2}\/)?author\/(?:show|list)\/(\d+)/i
@@ -43,6 +44,7 @@ export function authorProviderSourceUrl(provider: string, providerId: string): s
   const id = encodeURIComponent(providerId)
   if (provider === AuthorMetadataProviderKey.GOODREADS) return `https://www.goodreads.com/author/show/${id}`
   if (provider === AuthorMetadataProviderKey.AUDNEXUS) return `https://www.audible.com/author/${id}`
+  if (provider === AuthorMetadataProviderKey.LIBRIS) return `https://libris.kb.se/${id}`
   return null
 }
 

@@ -740,7 +740,8 @@ export class StatisticsRepository {
       ${bookMetadata.comicvineId} is not null or
       ${bookMetadata.ranobedbId} is not null or
       ${bookMetadata.lubimyczytacId} is not null or
-      ${bookMetadata.aladinId} is not null
+      ${bookMetadata.aladinId} is not null or
+      ${bookMetadata.librisId} is not null
     )`;
 
     const [row] = await this.db

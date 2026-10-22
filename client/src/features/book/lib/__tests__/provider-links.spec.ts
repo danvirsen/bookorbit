@@ -18,6 +18,7 @@ describe('book provider links', () => {
       ranobedb: '1287',
       lubimyczytac: '123/title name',
       aladin: '456789',
+      libris: 'ctv82fx49rndh4z7',
     }
 
     expect(createBookProviderLinks(providerIds)).toEqual([
@@ -111,6 +112,13 @@ describe('book provider links', () => {
         url: 'https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=456789',
         iconUrl: '/assets/provider-icons/aladin.svg',
         fallback: '알',
+      },
+      {
+        key: MetadataProviderKey.LIBRIS,
+        label: 'Libris',
+        url: 'https://libris.kb.se/ctv82fx49rndh4z7',
+        iconUrl: '/assets/provider-icons/libris.svg',
+        fallback: 'LI',
       },
     ])
   })

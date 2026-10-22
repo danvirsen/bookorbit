@@ -123,6 +123,12 @@ const PROVIDER_LINK_DEFINITIONS: readonly ProviderLinkDefinition[] = [
     url: (id) => `https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=${encoded(id)}`,
     fallback: '알',
   },
+  {
+    key: MetadataProviderKey.LIBRIS,
+    label: 'Libris',
+    url: (id) => `https://libris.kb.se/${encoded(id)}`,
+    fallback: 'LI',
+  },
 ]
 
 export function createBookProviderLinks(providerIds: ProviderIds, settings: ProviderLinkSettings = DEFAULT_LINK_SETTINGS): BookProviderLink[] {
